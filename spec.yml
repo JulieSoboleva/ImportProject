@@ -1,0 +1,104 @@
+openapi: 3.0.0
+info:
+  title: "Arithmetic"
+  description: "Flask rest api for basic arithmetic operations."
+  version: "1.0.0"
+
+servers:
+  - url: "/arithmetic"
+
+components:
+  schemas:
+    InputSchema:
+      type: "object"
+      required:
+        - number_a
+        - number_b
+      properties:
+        number_a:
+          type: "number"
+        number_b:
+          type: "number"
+  parameters:
+    first_number:
+      name: "a"
+      description: "Первое целое число"
+      in: query
+      required: true
+      example: 8
+      schema:
+        type: integer
+    second_number:
+      name: "b"
+      description: "Второе целое число"
+      in: query
+      required: true
+      example: 4
+      schema:
+        type: integer
+
+paths:
+  /addition:
+    get:
+      operationId: "test_package.dirty_main.addition"
+      tags:
+        - "Сложение"
+      summary: "Сложение двух целых чисел"
+      parameters:
+        - $ref: "#/components/parameters/first_number"
+        - $ref: "#/components/parameters/second_number"
+      responses:
+        "200":
+          description: "Результат выполнения сложения чисел"
+        "400":
+          description: "Не передан обязательный параметр"
+        "500":
+          description: "Внутренняя ошибка сервера"
+  /subtract:
+    get:
+      operationId: "test_package.dirty_main.subtract"
+      tags:
+        - "Вычитание"
+      summary: "Вычитание из первого целого числа второе"
+      parameters:
+        - $ref: "#/components/parameters/first_number"
+        - $ref: "#/components/parameters/second_number"
+      responses:
+        "200":
+          description: "Результат выполнения вычитания"
+        "400":
+          description: "Не передан обязательный параметр"
+        "500":
+          description: "Внутренняя ошибка сервера"
+  /multiply:
+    get:
+      operationId: "test_package.dirty_main.multiply"
+      tags:
+        - "Умножение"
+      summary: "Умножение двух целых чисел"
+      parameters:
+        - $ref: "#/components/parameters/first_number"
+        - $ref: "#/components/parameters/second_number"
+      responses:
+        "200":
+          description: "Результат выполнения умножения"
+        "400":
+          description: "Не передан обязательный параметр"
+        "500":
+          description: "Внутренняя ошибка сервера"
+  /division:
+    get:
+      operationId: "test_package.dirty_main.division"
+      tags:
+        - "Деление"
+      summary: "Деление первого целого числа на второе"
+      parameters:
+        - $ref: "#/components/parameters/first_number"
+        - $ref: "#/components/parameters/second_number"
+      responses:
+        "200":
+          description: "Результат выполнения деления"
+        "400":
+          description: "Не передан обязательный параметр"
+        "500":
+          description: "Внутренняя ошибка сервера"
